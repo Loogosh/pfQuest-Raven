@@ -1,11 +1,12 @@
 ## Interface: 11200
-## Title: |cff33ffccpf|cffffffffQuest |cffcccccc[TurtleWoW DB]
-## Author: Shagu
+## Title: |cff33ffccpf|cffffffffQuest |cffcccccc[RavenCraft DB]
+## Author: Shagu, Loogosh
 ## Contributors: Gurky, Antealis, HumbleKagu, KasVital, Haaxor1689, IcemanHHW, fatpowaranga
-## Notes: A TurtleWoW DB extension for pfQuest
-## Version: GIT
+## Notes: A RavenCraft (Mysteries of Azeroth) DB extension for pfQuest
+## Version: 1.0.0-raven
+## X-Website: https://ravencraft.io
 ## Dependencies: pfQuest
-## SavedVariables: pfQuest_turtlecount
+## SavedVariables: pfQuest_ravencount
 
 init\data-turtle.xml
 init\enUS-turtle.xml

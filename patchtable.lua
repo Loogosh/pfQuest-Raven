@@ -3,7 +3,7 @@ local loc = GetLocale()
 local dbs = { "items", "quests", "quests-itemreq", "objects", "units", "zones", "professions", "areatrigger", "refloot" }
 local noloc = { "items", "quests", "objects", "units" }
 
--- Patch databases to merge TurtleWoW data
+-- Patch databases to merge RavenCraft data
 local function patchtable(base, diff)
   for k, v in pairs(diff) do
     if type(v) == "string" and v == "_" then
@@ -55,8 +55,8 @@ if pfDB.bitraces then
   pfDB.bitraces[512] = "BloodElf"
 end
 
--- Use turtle-wow database url
-pfQuest.dburl = "https://database.turtle-wow.org/?quest="
+-- RavenCraft site
+pfQuest.dburl = "https://ravencraft.io/"
 
 -- Disable Minimap in custom dungeon maps
 function pfMap:HasMinimap(map_id)
@@ -153,27 +153,27 @@ function pfDatabase:QueryServer()
   query:Show()
 end
 
--- Automatically clear quest cache if new turtle quests have been found
+-- Automatically clear quest cache if new RavenCraft quests have been found
 local updatecheck = CreateFrame("Frame")
 updatecheck:RegisterEvent("PLAYER_ENTERING_WORLD")
 updatecheck:SetScript("OnEvent", function()
   if pfDB["quests"]["data-turtle"] then
-    -- count all known turtle-wow quests
+    -- count all known RavenCraft overlay quests
     local count = 0
     for k, v in pairs(pfDB["quests"]["data-turtle"]) do
       count = count + 1
     end
 
-    pfQuest:Debug("TurtleWoW loaded with |cff33ffcc" .. count .. "|r quests.")
+    pfQuest:Debug("RavenCraft loaded with |cff33ffcc" .. count .. "|r quests.")
 
     -- check if the last count differs to the current amount of quests
-    if not pfQuest_turtlecount or pfQuest_turtlecount ~= count then
+    if not pfQuest_ravencount or pfQuest_ravencount ~= count then
       -- remove quest cache to force reinitialisation of all quests.
       pfQuest:Debug("New quests found. Reloading |cff33ffccCache|r")
       pfQuest_questcache = {}
     end
 
     -- write current count to the saved variable
-    pfQuest_turtlecount = count
+    pfQuest_ravencount = count
   end
 end)
